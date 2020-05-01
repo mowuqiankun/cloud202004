@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jxstjh.cn</groupId>
-    <artifactId>springcloud202004</artifactId>
+    <artifactId>cloud202004</artifactId>
     <version>1.0-SNAPSHOT</version>
     <!--  pom总父工程-->
     <packaging>pom</packaging>
