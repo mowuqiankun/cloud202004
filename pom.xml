@@ -7,8 +7,103 @@
     <groupId>com.jxstjh.cn</groupId>
     <artifactId>springcloud202004</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <!--  总pom父工程-->
+    <!--  pom总父工程-->
     <packaging>pom</packaging>
+
+    <!--  統一管理jar包版本-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.targer>1.8</maven.compiler.targer>
+
+        <junit.version>4.12</junit.version>
+        <spring.test>5.1.9.RELEASE</spring.test>
+        <javax.servlet.api>3.1.0</javax.servlet.api>
+
+        <log4j.version>1.2.17</log4j.version>
+        <lombok.version>1.16.18</lombok.version>
+        <mysql.version>5.1.47</mysql.version>
+        <druid.version>1.1.16</druid.version>
+        <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
+    </properties>
+
+    <!--  用在父工程，子模快继承之后，提供作用：锁定版本+子modlue不用写groupId和version-->
+    <dependencyManagement>
+        <dependencies>
+            <!--spring boot 2.2.2-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud Hoxton.SR1-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring cloud alibaba 2.1.0.RELEASE-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.0.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.version}</version>
+            </dependency>
+
+            <!--Junit单元测试框架-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <!-- Spring-Test是Spring与Junit提供的整合包,通过这个组件可以在Junit测试时自动对IOC容器进行初始化-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.test}</version>
+            </dependency>
+            <!--根据需要（发生ClassNotFound异常时）加入其它依赖包，加上<scope>test</scope> -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet.api}</version>
+                <!-- scope = test 代表只在单元测试时才会加载这个依赖 -->
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <name>Maven</name>
     <url>http://maven.apache.org/</url>
@@ -20,24 +115,6 @@
             <url>scp://webhost.company.com/www/website</url>
         </site>
     </distributionManagement>
-
-    <!--  統一管理jar包版本-->
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.targer>1.8</maven.compiler.targer>
-        <junit.version>4.12</junit.version>
-        <log4j.version>1.2.17</log4j.version>
-        <lombok.version>1.16.18</lombok.version>
-        <mysql.version>5.1.47</mysql.version>
-        <druid.version>1.1.16</druid.version>
-        <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
-    </properties>
-
-    <!--  子模快繼承之后，提供作用：鎖定版本+子modlue不用写groupid和version-->
-    <dependencyManagement>
-
-    </dependencyManagement>
 
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
