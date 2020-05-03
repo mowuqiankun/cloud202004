@@ -1,0 +1,2 @@
+1、springboot启动时会自动注入数据源和配置jpa,去除相关自动加载
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
